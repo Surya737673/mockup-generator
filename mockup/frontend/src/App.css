@@ -1,0 +1,314 @@
+/* Custom styles for the Image Logo Overlay App */
+
+
+.app-container {
+  user-select: none;
+}
+
+/* Smooth transitions for drag operations */
+.logo-container {
+  transition: box-shadow 0.2s ease;
+}
+
+.logo-container:hover {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+.logo-container.dragging {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.8);
+  z-index: 30 !important;
+}
+
+/* Grid overlay styles */
+.grid-overlay {
+  pointer-events: none;
+  background-image: 
+    linear-gradient(rgba(0, 255, 0, 0.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 0, 0.3) 1px, transparent 1px);
+  background-size: 10px 10px;
+}
+
+/* Custom scrollbar for better UX */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* File input styling improvements */
+input[type="file"]::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+input[type="file"]::before {
+  content: 'Choose File';
+  color: #4f46e5;
+  display: inline-block;
+  background: white;
+  border: 2px solid #4f46e5;
+  border-radius: 6px;
+  padding: 8px 16px;
+  outline: none;
+  white-space: nowrap;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+input[type="file"]:hover::before {
+  background-color: #f8fafc;
+}
+
+input[type="file"]:focus::before {
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}
+
+/* Canvas container styling */
+.canvas-container {
+  position: relative;
+  background: 
+    linear-gradient(45deg, #f8f9fa 25%, transparent 25%),
+    linear-gradient(-45deg, #f8f9fa 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #f8f9fa 75%),
+    linear-gradient(-45deg, transparent 75%, #f8f9fa 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+/* Drag cursor feedback */
+.cursor-grabbing {
+  cursor: grabbing !important;
+}
+
+.cursor-grab {
+  cursor: grab;
+}
+
+/* Logo border styling */
+.logo-border {
+  border: 2px dashed rgba(59, 130, 246, 0.6);
+  border-radius: 4px;
+}
+
+.logo-border:hover {
+  border-color: rgba(59, 130, 246, 0.8);
+  border-style: solid;
+}
+
+.logo-border.active {
+  border-color: rgba(59, 130, 246, 1);
+  border-style: solid;
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.3);
+}
+
+/* Animation for smooth size changes */
+.logo-resize-transition {
+  transition: width 0.1s ease, height 0.1s ease;
+}
+
+/* Status indicator styling */
+.status-indicator {
+  position: relative;
+}
+
+.status-indicator.active::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background-color: #10b981;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .canvas-container {
+    width: 100% !important;
+    height: auto !important;
+  }
+  
+  .controls-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Focus states for accessibility */
+input:focus,
+button:focus {
+  outline: 2px solid rgba(59, 130, 246, 0.5);
+  outline-offset: 2px;
+}
+
+/* Export button special styling */
+.export-button {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+  transform: translateY(0);
+  transition: all 0.2s ease;
+}
+
+.export-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+.export-button:active {
+  transform: translateY(0);
+}
+
+/* Logo rotation and text styling */
+.logo-rotated {
+  transition: transform 0.3s ease;
+}
+
+.size-text {
+  font-family: 'Arial', sans-serif;
+  pointer-events: none;
+  user-select: none;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Rotation controls */
+.rotation-button {
+  transition: all 0.2s ease;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.rotation-button:hover {
+  background-color: #e5e7eb;
+  transform: scale(1.1);
+}
+
+.rotation-button:active {
+  background-color: #d1d5db;
+  transform: scale(0.95);
+}
+
+/* Text position controls */
+.text-position-indicator {
+  position: relative;
+}
+
+.text-position-indicator::after {
+  content: attr(data-position);
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  color: #6b7280;
+  background: white;
+  padding: 2px 4px;
+  border-radius: 2px;
+  border: 1px solid #e5e7eb;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.text-position-indicator:hover::after {
+  opacity: 1;
+}
+
+/* Enhanced grid overlay */
+.grid-overlay-enhanced {
+  background-image: 
+    linear-gradient(rgba(0, 255, 0, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 0, 0.2) 1px, transparent 1px),
+    linear-gradient(rgba(0, 255, 0, 0.4) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 0, 0.4) 1px, transparent 1px);
+  background-size: 10px 10px, 10px 10px, 50px 50px, 50px 50px;
+}
+
+/* Color picker styling */
+input[type="color"] {
+  -webkit-appearance: none;
+  border: none;
+  cursor: pointer;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+}
+
+/* Improved text display */
+.size-text-display {
+  backdrop-filter: blur(2px);
+  font-weight: 500;
+  letter-spacing: 0.025em;
+}
+
+/* Rotation angle display */
+.angle-display {
+  position: relative;
+}
+
+.angle-display::before {
+  content: '';
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%) rotate(var(--angle, 0deg));
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 6px solid #6b7280;
+  transition: transform 0.2s ease;
+}
+
+/* Loading states */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
